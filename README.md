@@ -7,6 +7,10 @@ grounded in the retrieved content.
 This is **not** a "chat with one PDF" project — it searches across many papers at once and
 synthesizes an answer from whichever are most relevant to the question.
 
+## Screenshot
+
+![ResearchMate app screenshot](assets/app-screenshot.png)
+
 ## Problem Statement
 
 Most beginner RAG demos are built around a single document (a PDF, a book, a YouTube transcript).
@@ -26,26 +30,17 @@ Kaggle: https://www.kaggle.com/datasets/blessondensil294/topic-modeling-for-rese
 
 ## Architecture
 
-```
-              USER
-                ↓
-         Streamlit Chat UI
-                ↓
-           User Question
-                ↓
-            Retriever  (top-k = 3)
-                ↓
-         FAISS Vector Store
-                ↓
-      Relevant Research Papers
-                ↓
-         Prompt + Context
-                ↓
-               LLM
-                ↓
-      Grounded Chatbot Answer
-                ↓
-     Relevant Paper Titles + Topics
+```mermaid
+flowchart TD
+    A[User] --> B[Streamlit Chat UI]
+    B --> C[User Question]
+    C --> D["Retriever (top-k = 3)"]
+    D --> E[FAISS Vector Store]
+    E --> F[Relevant Research Papers]
+    F --> G[Prompt + Context]
+    G --> H[LLM]
+    H --> I[Grounded Chatbot Answer]
+    I --> J[Relevant Paper Titles + Topics]
 ```
 
 ## Technologies Used
@@ -103,12 +98,14 @@ them along with their original text and metadata.
    streamlit run app.py
    ```
 
+## Live Demo
+
+**https://researchmate-rag-chatbot-bclsannn85qzgk88hcdvuf.streamlit.app**
+
 ## Deployment
 
 Deployed via GitHub → Streamlit Community Cloud. The Groq API key is stored using Streamlit
 Cloud's Secrets manager, never committed to the repository.
-
-*(Live deployment link to be added after Stage 13.)*
 
 ## Limitations
 
